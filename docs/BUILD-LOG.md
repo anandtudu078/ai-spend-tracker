@@ -23,3 +23,24 @@ security feature, not Prisma itself. Lesson: environment setup issues
 on a fresh machine are their own kind of "bug" worth expecting, even
 before writing any app logic.
 
+## Day 2 — Clerk auth + database sync via webhooks
+
+Wired up full authentication today using Clerk: email/password + Google
+sign-in, session handling, and a proper sign-in/sign-up UI, all working
+end to end. The harder part was syncing Clerk's users into my own
+Postgres database — Clerk only knows about auth, not my app's data
+model, so every sign-up needs to create a matching row in my own User
+table via a webhook.
+
+Honest detail: this took way longer than expected. Prisma 7 quietly
+requires an explicit database "driver adapter" now instead of just
+reading a connection string automatically — a breaking change that
+isn't obvious from a plain "module not found" error. Also had to set
+up ngrok to let Clerk's servers reach my local machine at all, ran into
+an outdated ngrok version blocking the tunnel, and finally traced a
+failing webhook down to a single mistyped env variable name
+(CLERK_WEBHOOK_SECRET_KEY vs CLERK_WEBHOOK_SECRET). None of these were
+hard problems individually, but stacked together they ate most of the
+day. Lesson: budget real time for "the webhook doesn't work and I don't
+know why" — it's one of the most common walls in real app-building.
+

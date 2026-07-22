@@ -32,3 +32,35 @@ zero indication why. A good reminder that "building in public" includes
 the boring debugging, not just the wins.
 
 Building this in public — day 1 of 20.
+
+## Day 2 — Clerk auth + database sync via webhooks
+
+**X / Twitter:**
+Auth is live on the AI Spend Tracker — email/password + Google sign-in
+via Clerk, and every sign-up now syncs into my own database through a
+verified webhook.
+
+The real fight today wasn't the auth UI, it was one mistyped env
+variable name that took an hour to find.
+
+Next: building out team management.
+
+**LinkedIn:**
+Today's milestone on the AI Spend Tracker: real authentication, and —
+more importantly — a working pipeline that keeps my own database in
+sync with who's actually signed up.
+
+This sounds simple but isn't. Your auth provider (Clerk, in this case)
+knows who logged in, but your own app's database needs its own copy of
+that user to attach teams, budgets, and usage records to. The fix is a
+webhook: Clerk notifies my server the moment someone signs up, and my
+server creates the matching record.
+
+Honest moment: today was mostly debugging, not building. A newer
+version of my database tool quietly changed how it connects to
+Postgres, and separately, a single typo in an environment variable name
+cost me the better part of an hour before I found it. Nothing here was
+conceptually hard — it was just the unglamorous kind of work that
+building in public usually skips over.
+
+Building this in public — day 2 
