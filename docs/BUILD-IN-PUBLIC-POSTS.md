@@ -196,3 +196,37 @@ URL, won't have. Better to find that out now than after deploying.
 
 Building this in public — day 6 of 20.
 
+#X
+Budgets are live on the AI Spend Tracker — set a spending limit for
+any team or individual, with a real progress bar tracking actual spend
+against it (and it turns red when you go over).
+
+This was the smoothest phase yet, and I think it's because the
+database schema decisions from Day 1 finally paid off — good early
+planning made this feature come together with zero fighting.
+
+One more phase to go: alerts.
+
+#LINKEDIN
+Today the AI Spend Tracker got real budgets — set a spending limit for
+any team or individual, over any custom date range, and watch it track
+against actual usage in real time. Go over the limit, and it turns red
+immediately.
+
+The interesting part was under the hood: a team budget doesn't just
+check one number, it rolls up spend across every member of that team
+within the budget period. That kind of aggregation is exactly the
+value this tool is meant to provide — visibility a manager simply
+doesn't get from looking at a raw AI billing statement.
+
+Honest moment, and a genuinely nice one this time: this was the
+smoothest phase of the whole build so far. I think it's because the
+database schema I designed on Day 1 — specifically making budgets able
+to attach to either a person or a team — turned out to be exactly
+right for this feature. Good early planning paying off later is a
+satisfying thing to watch happen.
+
+One phase left before this hits a real MVP: alerts when a budget gets
+close to or exceeds its limit.
+
+Building this in public — day 7 of 20.
