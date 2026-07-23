@@ -115,3 +115,19 @@ didn't. It's a real limitation of testing webhooks locally: the tunnel
 has to be actively running for new sign-ups to sync, which won't be
 an issue once this is deployed with a permanent URL, but is an easy
 trap during local dev.
+
+## Day 7 — Budget creation with real-time spend tracking
+
+Built budget creation for both teams and individuals, with custom date
+ranges and a real spend calculation against actual usage data — not
+just a static number. For team budgets, this meant rolling up spend
+across every member of the team within the budget's date range, which
+is exactly the kind of aggregation this whole project is meant to make
+easy.
+
+Honest detail: this was the smoothest phase so far, and I think that's
+because the schema decisions made back in Phase 1 (Budget being able
+to attach to either a user or a team, the TeamMembership join table)
+paid off directly here. Good early data modeling meant this feature
+came together without any real fighting — a nice contrast to some of
+the earlier phases.
