@@ -44,3 +44,20 @@ hard problems individually, but stacked together they ate most of the
 day. Lesson: budget real time for "the webhook doesn't work and I don't
 know why" — it's one of the most common walls in real app-building.
 
+## Day 3 — Dashboard shell + a real git workflow lesson
+
+Built the dashboard shell today: a persistent sidebar with four sections
+(Overview, Usage, Teams, Budgets), routed properly with Next.js's App
+Router layout system so the sidebar doesn't re-render on every page
+navigation.
+
+Honest detail: today's real lesson wasn't code, it was git. Discovered
+that yesterday's Clerk auth PR had silently merged into main instead of
+develop — the classic mistake of not double-checking the base branch
+dropdown before creating a PR. Nothing was lost, but it took real
+detective work (comparing branches commit by commit, diffing remote
+refs) to confirm that and fix it safely. Also hit a filename-casing
+mismatch (sidebar.tsx vs Sidebar.tsx) that works fine on Windows but
+would've silently broken on deployment to Vercel's Linux servers.
+Lesson: case-sensitivity and branch targeting are the kind of mistakes
+that don't show up until much later if you don't check immediately.
