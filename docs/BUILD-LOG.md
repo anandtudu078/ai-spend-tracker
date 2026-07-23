@@ -81,3 +81,18 @@ the tool magically knows who used what.
 Also caught a real data-integrity bug during testing: uploading the
 same CSV twice created duplicate spend records, silently doubling
 someone's numbers. Fixed it by checking existing records
+
+## Day 5 — Overview and Usage pages now show real data
+
+Wired up both dashboard pages to actually display data instead of
+placeholder text. The Usage page now shows a real table of every
+uploaded usage record, and the Overview page shows total spend plus a
+bar chart of spend by model. Restructured both pages as server
+components that query Prisma directly, splitting the interactive
+upload form out into its own client component so the two concerns
+(data fetching vs. interactivity) stay properly separated.
+
+Honest detail: caught two small but real issues while testing. First,
+leftover duplicate rows from earlier manual testing were still sitting
+in the database, which would have shown wrong totals in the new chart
+if I hadn't
