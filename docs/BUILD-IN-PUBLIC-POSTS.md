@@ -131,3 +131,35 @@ during testing, instead of after a real manager relied on the numbers.
 Building this in public — day 4
 
 
+## Day 5 — Overview and Usage pages now show real data
+
+**X / Twitter:**
+The AI Spend Tracker dashboard now shows real numbers — total spend
+and a chart of spend by model, pulled straight from uploaded usage
+data.
+
+Small but real bug caught along the way: a table header that was
+basically invisible, light gray text on a light background in a dark
+app. Reminder that "it compiles" isn't the same as "it's usable."
+
+Next: team creation.
+
+**LinkedIn:**
+Today the AI Spend Tracker dashboard stopped being placeholder text
+and started showing real numbers. The Overview page now shows total
+AI spend and a breakdown by model, and the Usage page lists every
+uploaded record in a real table — all pulled live from the database.
+
+Under the hood, this meant restructuring both pages properly: fetching
+data server-side for speed and security, while keeping the interactive
+upload form as its own separate piece. Small architectural decision,
+but it's the difference between "works on my machine" and something
+that'll scale cleanly as more features get added.
+
+Honest moment: I caught a genuinely embarrassing bug during testing —
+a table header row that was nearly invisible, light text on a light
+background that didn't account for the app's dark theme. The kind of
+thing that's easy to miss when you're focused on "does the data show
+up" rather than "can a person actually read this."
+
+Building this in public — day 5 of 20.
