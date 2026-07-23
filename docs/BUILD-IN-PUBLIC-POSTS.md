@@ -95,3 +95,39 @@ review. Slowing down to verify each step, rather than assuming it
 worked, saved me from a much bigger mess later.
 
 Building this in public — day 3 of 20.
+
+## Day 4 — CSV upload with validation and duplicate protection
+
+**X / Twitter:**
+Real data is now flowing into the AI Spend Tracker — built a CSV
+upload flow that validates rows, matches usage to employees by email,
+and reports exactly which rows failed and why.
+
+Caught a nasty bug while testing: re-uploading the same file silently
+doubled everyone's spend numbers. Fixed with proper duplicate
+detection before it became a real problem.
+
+Next: making the dashboard actually show this data.
+
+**LinkedIn:**
+Today the AI Spend Tracker got its first real data pipeline: managers
+can now upload a CSV of their team's AI usage, and the system matches
+each row to an employee, validates it, and stores it cleanly — with
+row-by-row error reporting instead of an all-or-nothing failure.
+
+Honest moment: building this forced an uncomfortable but important
+realization. Neither Anthropic nor OpenAI track usage by individual
+employee at all — they only see API keys. So per-person attribution
+only works if a company already issues separate API keys per employee.
+It's a real constraint worth being upfront about rather than
+overselling what the tool can do out of the box.
+
+I also caught a genuine bug during testing: uploading the same file
+twice quietly doubled every spend number, since nothing checked for
+already-existing records. That's exactly the kind of silent data bug
+that erodes trust in a tool like this, so I'm glad it surfaced now,
+during testing, instead of after a real manager relied on the numbers.
+
+Building this in public — day 4
+
+

@@ -61,3 +61,23 @@ mismatch (sidebar.tsx vs Sidebar.tsx) that works fine on Windows but
 would've silently broken on deployment to Vercel's Linux servers.
 Lesson: case-sensitivity and branch targeting are the kind of mistakes
 that don't show up until much later if you don't check immediately.
+
+## Day 4 — CSV upload with validation and duplicate protection
+
+Built the first real data pipeline into the app today: a CSV upload
+flow that parses AI usage data, matches each row to a user by email,
+validates every field, and writes clean rows into the UsageRecord
+table. Bad rows (missing fields, unknown emails) are reported back
+individually by row number instead of failing the whole upload.
+
+Honest detail: had a good conversation with myself about what this
+tool can actually promise. Turns out neither Anthropic nor OpenAI
+track usage by employee at all — they only see API keys and
+workspaces. So "per-employee attribution" only works if a company
+already issues individual API keys per person, which not everyone
+does. Worth being upfront about that limitation rather than pretending
+the tool magically knows who used what.
+
+Also caught a real data-integrity bug during testing: uploading the
+same CSV twice created duplicate spend records, silently doubling
+someone's numbers. Fixed it by checking existing records
