@@ -163,3 +163,36 @@ thing that's easy to miss when you're focused on "does the data show
 up" rather than "can a person actually read this."
 
 Building this in public — day 5 of 20.
+
+#twitter
+Team creation is live on the AI Spend Tracker — anyone can create a
+team and add members by email, laying the groundwork for team-level
+budgets.
+
+Ran into a genuinely interesting bug while testing: a foreign key
+error revealed that a test account existed in Clerk but never made it
+into my own database, because my webhook tunnel wasn't running when
+they signed up.
+
+Next: budgets.
+
+#linkedin
+Today the AI Spend Tracker got team creation and member management —
+anyone can spin up a team and add people to it by email, which is the
+last missing piece before team-level budgets are possible.
+
+Honest moment: hit a bug that taught me something real about how
+webhooks work in local development. Creating a team failed with a
+database error, and digging in revealed the actual cause — I was
+testing under an account that existed in Clerk (my auth provider) but
+had never synced into my own database, because the tunnel that lets
+Clerk reach my local machine wasn't running when that account signed
+up.
+
+It's a good reminder that "it works" during one testing session
+doesn't mean the underlying plumbing is bulletproof — local
+webhook testing has real gaps that production, with its permanent
+URL, won't have. Better to find that out now than after deploying.
+
+Building this in public — day 6 of 20.
+

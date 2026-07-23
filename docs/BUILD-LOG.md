@@ -96,3 +96,22 @@ Honest detail: caught two small but real issues while testing. First,
 leftover duplicate rows from earlier manual testing were still sitting
 in the database, which would have shown wrong totals in the new chart
 if I hadn't
+
+
+## Day 6 — Team creation and member management
+
+Built the ability to create teams and add members to them by email —
+the last piece needed before team-scoped budgets become possible. Any
+signed-in user can create a team, and adding a member just requires
+typing their email; it's validated against existing users the same
+way CSV upload attribution works.
+
+Honest detail: hit a genuinely interesting bug while testing. Creating
+a team failed with a foreign key error — turned out I was testing
+under a Clerk account that had signed up while my ngrok tunnel wasn't
+running, so the sign-up webhook never fired and that user was never
+synced into my own database. Clerk knew about the account; my app
+didn't. It's a real limitation of testing webhooks locally: the tunnel
+has to be actively running for new sign-ups to sync, which won't be
+an issue once this is deployed with a permanent URL, but is an easy
+trap during local dev.
