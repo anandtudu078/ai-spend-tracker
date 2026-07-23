@@ -64,3 +64,34 @@ conceptually hard — it was just the unglamorous kind of work that
 building in public usually skips over.
 
 Building this in public — day 2 
+
+
+## Day 3 — Dashboard shell + a real git workflow lesson
+
+**X / Twitter:**
+Dashboard shell is live on the AI Spend Tracker — sidebar nav, four
+sections, proper Next.js layout routing.
+
+Today's real bug wasn't code though: a PR had silently merged into the
+wrong branch yesterday. Nothing lost, but a good reminder to always
+double-check the base branch before hitting merge.
+
+Next: pulling in real usage data.
+
+**LinkedIn:**
+Shipped the dashboard shell for the AI Spend Tracker today — a proper
+sidebar with Overview, Usage, Teams, and Budgets sections, all wired up
+with Next.js's routing so navigation feels instant.
+
+Honest moment: the real work today wasn't building, it was debugging my
+own process. I discovered a pull request from the day before had
+silently merged into the wrong branch — a single dropdown I didn't
+double-check. Nothing was lost, but tracing it down took real
+detective work comparing branch histories commit by commit.
+
+It's a good reminder that in solo projects, the git workflow is easy to
+get sloppy about since there's no teammate to catch your mistakes in
+review. Slowing down to verify each step, rather than assuming it
+worked, saved me from a much bigger mess later.
+
+Building this in public — day 3 of 20.
