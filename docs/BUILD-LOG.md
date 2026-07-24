@@ -131,3 +131,30 @@ to attach to either a user or a team, the TeamMembership join table)
 paid off directly here. Good early data modeling meant this feature
 came together without any real fighting — a nice contrast to some of
 the earlier phases.
+
+## Day 8 — Deploying the database to production (Supabase)
+
+Started deploying to production today, beginning with moving the
+database from local Docker Postgres to a real hosted database on
+Supabase. This turned into the most technically demanding day of the
+build so far — not because any single problem was hard, but because
+several separate, legitimate issues stacked on top of each other.
+
+Honest detail, in order: first, a password containing an @ symbol
+silently broke the connection string until I URL-encoded it. Then
+Prisma 7 turned out to have changed how it reads migration connection
+strings — the CLI now uses the url field in prisma.config.ts, not
+directUrl, which isn't obvious from a plain error message. Then
+Supabase's true direct connection turned out to be IPv6-only, which
+my network can't reach, causing a silent timeout. And finally, after
+switching to the correct connection type, a partially-failed earlier
+migration attempt left the database in a mixed state that needed a
+full schema reset to recover from cleanly.
+
+Ended up applying the schema directly via Supabase's SQL editor and
+manually reconciling Prisma's migration tracking table — a legitimate,
+safe recovery path, just not the one the docs walk you through. Lesson:
+production database setup has real, unglamorous edge cases that don't
+show up in local development, and "the tutorial didn't mention this"
+is normal, not a sign something's wrong with you.
+
